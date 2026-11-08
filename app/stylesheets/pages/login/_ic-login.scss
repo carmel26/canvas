@@ -291,6 +291,7 @@ body.ic-Login-Body #footer.ic-Login-footer {
   .ic-Login-footer__links {
     padding: $ic-sp;
     text-align: center;
+    display: none;
     a, .menu-item__text, .external {
       @include ic-focus-base;
       &:focus {
@@ -394,7 +395,7 @@ body.body--login-confirmation {
 }
 
 .ic-Login-confirmation__logo {
-  width: 140px; height: 35px;
+  width: 90px; height: auto;
 }
 
 .ic-Login-confirmation__content {
@@ -411,3 +412,197 @@ body.body--login-confirmation {
   vertical-align: middle;
   margin-#{direction(right)}: $ic-sp;
 }
+
+////////////////////////////////////////
+// MWECAU modern theme
+////////////////////////////////////////
+$mwecau-blue: #3a45ab;
+$mwecau-blue-dark: #262e7d;
+
+body.ic-Login-Body {
+  --ic-brand-Login-body-bgd-color: #f3f2f8;
+  --ic-brand-Login-body-bgd-shadow-color: transparent;
+  --ic-brand-Login-body-bgd-image: none;
+  --ic-brand-Login-Content-bgd-color: transparent;
+  --ic-brand-Login-Content-border-color: transparent;
+  --ic-brand-Login-Content-inner-bgd: transparent;
+  --ic-brand-Login-Content-inner-border: transparent;
+  --ic-brand-Login-Content-inner-body-bgd: transparent;
+  --ic-brand-Login-Content-inner-body-border: transparent;
+  --ic-brand-Login-Content-label-text-color: #1f2547;
+  --ic-brand-Login-Content-password-text-color: #{$mwecau-blue};
+  --ic-brand-Login-footer-link-color: #5b6190;
+  background-image: none;
+  background-color: #f3f2f8;
+  min-height: 100vh;
+  height: auto;
+}
+
+body.ic-Login-Body .ic-Login {
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: $ic-sp*2 $ic-sp;
+  box-sizing: border-box;
+}
+
+body.ic-Login-Body .ic-Login__container {
+  margin-top: 0;
+  width: 100%;
+  max-width: 1000px;
+  min-height: 560px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(38, 46, 125, 0.18);
+}
+
+body.ic-Login-Body .ic-Login__content {
+  flex: 1 1 50%;
+  box-sizing: border-box;
+  background: #fff;
+  border: 0;
+  border-radius: 0;
+  padding: $ic-sp*3 $ic-sp*4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+body.ic-Login-Body .ic-Login__innerContent { width: 100%; }
+
+body.ic-Login-Body .ic-Login__visual {
+  flex: 1 1 50%;
+  background-color: #e8e9f5;
+  background-image: url("/images/login-hero.jpg");
+  background-size: cover;
+  background-position: 45% center;
+}
+
+body.ic-Login-Body .ic-Login-title {
+  margin: $ic-sp 0 0;
+  text-align: center;
+  color: $mwecau-blue-dark;
+  @include fontSize(26px);
+  line-height: 1.25;
+}
+body.ic-Login-Body .ic-Login-tagline {
+  margin: $ic-sp*0.5 0 0;
+  text-align: center;
+  color: #d4a017;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 800px) {
+  body.ic-Login-Body .ic-Login__visual { display: none; }
+  body.ic-Login-Body .ic-Login__content { padding: $ic-sp*2; }
+}
+
+body.ic-Login-Body .ic-Login__innerContent {
+  padding-top: 0;
+  border: 0;
+}
+
+body.ic-Login-Body .ic-Login-header {
+  flex-direction: column;
+  padding: 0;
+  .ic-Login-header__logo {
+    flex: none;
+    img {
+      display: block;
+      width: 130px;
+      height: auto;
+      margin: 0 auto;
+    }
+  }
+  .ic-Login-header__links {
+    flex: none;
+    text-align: center;
+    padding: $ic-sp 0 0;
+  }
+}
+
+body.ic-Login-Body .ic-Login__body {
+  padding: $ic-sp*1.5 0 $ic-sp;
+  .ic-Input {
+    border-radius: 8px;
+    height: 44px;
+    &:focus {
+      border-color: $mwecau-blue;
+      box-shadow: 0 0 0 3px rgba($mwecau-blue, 0.2);
+    }
+  }
+  .Button--login {
+    width: 100%;
+    background: $mwecau-blue;
+    color: #fff;
+    border-color: $mwecau-blue;
+    border-radius: 8px;
+    height: 44px;
+    &:hover { background: $mwecau-blue-dark; }
+  }
+}
+
+body.ic-Login-Body .ic-Login__actions {
+  flex-direction: column;
+  align-items: stretch;
+  .ic-Login__actions-timeout { margin-bottom: $ic-sp; }
+}
+
+.ic-Login__google {
+  margin-top: $ic-sp*1.5;
+  .ic-Login__google-divider {
+    display: flex;
+    align-items: center;
+    gap: $ic-sp;
+    color: #6b7280;
+    @include fontSize(12px);
+    &::before, &::after { content: ""; flex: 1; border-top: 1px solid #e5e7eb; }
+  }
+  .ic-Login__google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $ic-sp*0.75;
+    margin-top: $ic-sp;
+    height: 44px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #fff;
+    color: #1f2547;
+    text-decoration: none;
+    font-weight: 600;
+    &:hover { background: #f3f4f6; }
+    &--disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      &:hover { background: #fff; }
+    }
+  }
+}
+
+// Centered, stacked layout for the form column
+body.ic-Login-Body {
+  .ic-Login-header__links { text-align: center; }
+  .ic-Form-control--login { margin-bottom: $ic-sp*1.25; }
+  .ic-Login__actions {
+    align-items: center;
+    .ic-Login__actions-timeout {
+      order: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: $ic-sp*0.5;
+      margin: $ic-sp 0 0;
+      width: 100%;
+    }
+    .ic-Form-control { order: 1; width: 100%; }
+  }
+  .ic-Login__forgot { text-align: center; }
+  .ic-Login__google { text-align: center; }
+}
+
+body.ic-Login-Body .ic-Login-footer { width: 100%; margin-top: $ic-sp; }

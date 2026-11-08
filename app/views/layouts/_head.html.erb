@@ -63,8 +63,13 @@
   <% end %>
   <%= yield :head %>
   <%= benchmark("include_css_bundles") { include_css_bundles } %>
-  <%= favicon_link_tag(brand_variable('ic-brand-apple-touch-icon'), rel: 'apple-touch-icon', type: nil) %>
-  <%= favicon_link_tag(favicon) %>
+  <% if params[:controller]&.start_with?("login/") %>
+    <%= favicon_link_tag("mwecau-logo.png", rel: "apple-touch-icon", type: nil) %>
+    <%= favicon_link_tag("mwecau-logo.png", type: "image/png") %>
+  <% else %>
+    <%= favicon_link_tag(brand_variable('ic-brand-apple-touch-icon'), rel: 'apple-touch-icon', type: nil) %>
+    <%= favicon_link_tag(favicon) %>
+  <% end %>
   <% @content_for_head&.each do |string| %>
   <%= string %><% end %>
   <%= include_account_css unless @exclude_account_css %>

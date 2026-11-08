@@ -98,7 +98,7 @@ export default class ThemeEditorImageRow extends Component {
             <div className="Theme__editor-image_upload">
               <input
                 type="hidden"
-                name={!this.props.userInput.val && inputName}
+                name={this.props.userInput.val ? undefined : inputName}
                 value={this.props.userInput.val === '' ? '' : this.props.currentValue}
               />
 
@@ -113,7 +113,7 @@ export default class ThemeEditorImageRow extends Component {
                 <input
                   type="file"
                   className="Theme__editor-input_upload"
-                  name={this.props.userInput.val && inputName}
+                  name={this.props.userInput.val ? inputName : undefined}
                   accept={this.props.varDef.accept}
                   onChange={event => this.setValue(event.target)}
                   ref={c => (this.fileInput = c)}
