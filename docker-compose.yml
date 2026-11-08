@@ -1,0 +1,26 @@
+# See doc/docker/README.md or https://github.com/instructure/canvas-lms/tree/master/doc/docker
+services:
+  web: &WEB
+    build:
+      context: .
+    links:
+      - postgres
+      - redis
+    environment:
+      POSTGRES_PASSWORD: sekret
+
+  jobs:
+    <<: *WEB
+    command: bundle exec rake jobs:work QUEUE=canvas_queue
+    environment:
+      POSTGRES_PASSWORD: sekret
+      # Limits simultaneous worker threads inside this container
+      RAILS_MAX_THREADS: 5
+
+  postgres:
+    build: ./docker-compose/postgres
+    environment:
+      POSTGRES_PASSWORD: sekret
+
+  redis:
+    image: redis:alpine
