@@ -91,6 +91,12 @@ if k5_user?
   <h1 class="screenreader-only"><%= dashboard_title %></h1>
   <%= render :partial => 'shared/dashboard_invitation', :collection => @pending_invitations %>
   <%= render :partial => 'shared/dashboard_messages' %>
+  <section class="mwenge-dashboard-welcome" aria-label="<%= t('Mwenge Catholic University') %>">
+    <div class="mwenge-dashboard-welcome__content">
+      <p><%= t('Mwenge Catholic University') %></p>
+      <h2><%= t('Lux Mundi') %></h2>
+    </div>
+  </section>
   <% if k5_user? %>
     <div id="dashboard-app-container"></div>
   <% else %>

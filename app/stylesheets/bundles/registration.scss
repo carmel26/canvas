@@ -19,194 +19,255 @@
 @import "base/environment";
 @import "pages/login/registration_dialog";
 
-body {
-  background: #333;
-}
-
-a {
-  color: #2ca4e9;
-  &:hover {
-    color: #1873c8;
-  }
+.mwenge-registration {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #172338;
+  background: #f4f6fa;
 }
 
 .registration-content {
-  width: auto;
-  margin: 0 10px 0 10px;
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
   position: relative;
 }
 
 #registration_header {
+  position: relative;
+  z-index: 1;
   background: #fff;
-  height: 122px;
-  padding-top: 12px;
-  h1, .h1 {
-    padding: direction-sides(50px 0 0 0px);
-    a {
-      display: block;
-      width: 175px;
-      height: 44px;
-      background: transparent url(/images/registration/logo.png) 0 0 no-repeat;
-      text-indent: -9999em;
+  border-bottom: 1px solid #e4e8ef;
+  padding: 14px 0;
+
+  .registration-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  #registration_login {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 20px;
+    border: 1px solid #3a45ab;
+    border-radius: 7px;
+    color: #3a45ab;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover, &:focus {
+      background: #f0f1fc;
+      text-decoration: underline;
     }
   }
-  #registration_login {
-    color: #30536e;
-    position: absolute;
-    #{direction(right)}: 73px;
-    top: 55px;
-    padding: direction-sides(0 22px 0 0);
-    border: 5px solid transparent;
-    font-size: 1.1em;
-    background: transparent url(/images/registration/down-arrow.png) right center no-repeat;
+}
+
+.registration-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #262e7d;
+  font-weight: 600;
+  text-decoration: none;
+
+  img {
+    display: block;
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
+  }
+
+  span {
+    color: #b18412;
+    font-size: 14px;
   }
 }
+
+#registration_content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 56px 0;
+  background-color: #263757;
+  background-image: linear-gradient(90deg, rgba(18, 30, 55, 0.84), rgba(18, 30, 55, 0.42)), url("/images/login-hero.jpg");
+  background-size: cover;
+  background-position: center 48%;
+
+  > .registration-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 430px);
+    align-items: center;
+    gap: clamp(36px, 7vw, 96px);
+  }
+}
+
+.registration-welcome {
+  max-width: 520px;
+  color: #fff;
+
+  .registration-eyebrow {
+    margin: 0 0 12px;
+    color: #f1cf75;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 42px;
+    line-height: 1.1;
+  }
+
+  > p:not(.registration-eyebrow) {
+    max-width: 440px;
+    margin: 16px 0 0;
+    font-size: 18px;
+    line-height: 1.55;
+  }
+}
+
 #registration_video {
-  margin: 0;
+  margin: 24px 0 0;
+  font-size: 15px;
+
   a {
-    position: relative;
-    z-index: 1;
-    margin: 0 auto;
-    display: block;
-    width: 300px;
-    height: 200px;
-    background: transparent url(/images/registration/watch-video-ribbon.png) 0 -18px no-repeat;
-    text-indent: -9999em;
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 }
 
 #registration_options {
-  margin: 20px auto 0;
-  width: 495px;
-  text-align: center;
-  padding-top: 200px;
-  height: 90px;
-  background: transparent url(/images/registration/signup_bg.png) 0 0 no-repeat;
-  position: relative;
-  h2, .h2 {
-    text-indent: -9999em;
+  box-sizing: border-box;
+  padding: 32px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 18px 48px rgba(14, 25, 45, 0.25);
+
+  h2 {
     margin: 0;
-    height: 30px;
+    color: #172338;
+    font-size: 25px;
+    line-height: 1.25;
+  }
+
+  > p {
+    margin: 8px 0 22px;
+    color: #596579;
+    line-height: 1.5;
   }
 }
 
-#registration_content:before {
-  display: block;
-  width: 100%;
-  height: 100px;
-  position: absolute;
-  content: " ";
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-  opacity: 0.5;
+.registration-actions {
+  display: grid;
+  gap: 12px;
 }
 
-#registration_content {
-  background: #fff url(/images/registration/page-background.png) 0 0 repeat;
-  padding-bottom: 40px;
-}
-
-#registration_footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.9);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  min-height: 30px;
-  padding: 10px 0 40px;
-  color: #999;
-  @include fontSize(11px);
-  a {
-    margin-#{direction(left)}: 5px;
-    color: #999;
-    &:hover, &:active {
-      color: #2ca4e9;
-    }
-  }
-}
-
-.left {
-  float: direction(left);
-}
-
-.right {
-  float: direction(right);
-}
-
-#signup_teacher, #signup_student {
+.registration-choice {
   @include ic-focus-base;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  box-sizing: border-box;
+  padding: 10px 16px;
+  border: 1px solid #3a45ab;
+  border-radius: 7px;
+  color: #3a45ab;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+
   &:focus {
     @include ic-focus-variant;
   }
-  position: absolute;
-  background-image: url(/images/registration/landing_buttons.png);
-  background-repeat: no-repeat;
-  background-position: 5px 5px;
-  position: absolute;
-  top: 157px;
-  width: 180px;
-  height: 65px;
-  text-indent: -9999em;
-}
 
-#signup_teacher {
-  &:hover, &:focus {
-    background-position: 5px -60px;
-  }
-  #{direction(left)}: 67px;
-}
-
-#signup_student {
-  #{direction(right)}: 67px;
-  background-position: 5px -125px;
-  &:hover, &:focus {
-    background-position: 5px -190px;
+  &:hover {
+    background: #f0f1fc;
+    text-decoration: none;
   }
 }
 
-#login_form {
-  position: absolute;
-  #{direction(right)}: 0;
-  top: 95px;
-  background: #fff;
-  border: 1px solid #bbb;
-  padding: 11px 11px 8px;
-  z-index: 2;
-  border-radius: 5px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  .login-input {
-    width: 125px;
-    position: relative; /* so that it's over the caret */
-  }
-  button {
-    width: 100%;
-    display: block;
-    line-height: 1.75em;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 1em;
-    background: linear-gradient(to bottom, #0abcfe 0%, #0090d7 100%);
-    border-width: 1px;
-    border-style: solid;
-    border-color: #0abcfe #238fe4 #1974c9;
-    border-radius: 3px;
+.registration-choice--teacher {
+  background: #3a45ab;
+  color: #fff;
+
+  &:hover {
+    background: #262e7d;
     color: #fff;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 1px 1px rgba(0, 0, 0, 0.3);
-    &:hover, &:focus {
-      background: linear-gradient(to bottom, #09aae5 0%, #0080c0 100%);
-      outline: none;
+  }
+}
+
+.registration-parent-signup {
+  margin-top: 18px;
+  text-align: center;
+
+  a {
+    color: #3a45ab;
+    font-size: 14px;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+
+#registration_footer {
+  min-height: 30px;
+  padding: 16px 0;
+  color: #657084;
+  font-size: 12px;
+
+  .registration-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  a {
+    color: #3a45ab;
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 760px) {
+  .registration-content {
+    width: min(100% - 32px, 560px);
+  }
+
+  #registration_content {
+    padding: 40px 0;
+
+    > .registration-content {
+      grid-template-columns: 1fr;
+      gap: 28px;
     }
   }
-  &:before {
-    content: ' ';
-    display: block;
-    height: 16px;
-    width: 16px;
-    position: absolute;
-    top: -10px;
-    #{direction(left)}: 50%;
-    margin-#{direction(left)}: -11px;
-    transform: rotate(45deg);
-    border: 1px solid #bbb;
-    border-#{direction(right)}: none;
-    border-bottom: none;
-    background: $white;
+
+  .registration-welcome h1 {
+    font-size: 34px;
+  }
+
+  .registration-welcome > p:not(.registration-eyebrow) {
+    font-size: 16px;
+  }
+
+  #registration_options {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 420px) {
+  #registration_footer .registration-content {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .registration-brand span {
+    display: none;
   }
 }
