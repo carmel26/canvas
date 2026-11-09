@@ -606,3 +606,86 @@ body.ic-Login-Body {
 }
 
 body.ic-Login-Body .ic-Login-footer { width: 100%; margin-top: $ic-sp; }
+
+@media screen and (max-width: 600px) {
+  body.ic-Login-Body .ic-Login {
+    align-items: flex-start;
+    padding: $ic-sp;
+  }
+
+  body.ic-Login-Body .ic-Login__container {
+    min-height: 0;
+    border-radius: 16px;
+  }
+
+  body.ic-Login-Body .ic-Login__content {
+    padding: 20px 16px;
+  }
+
+  body.ic-Login-Body .ic-Login-header {
+    .ic-Login-header__logo img {
+      width: 96px;
+    }
+
+    .ic-Login-tagline {
+      margin-top: 6px;
+      font-size: 15px;
+    }
+
+    .ic-Login-header__links {
+      width: 100%;
+      padding-top: 8px;
+    }
+  }
+
+  body.ic-Login-Body .ic-Login__body {
+    padding-top: $ic-sp;
+  }
+
+  body.ic-Login-Body .ic-Form-control--login {
+    margin-bottom: $ic-sp*0.75;
+  }
+
+  body.ic-Login-Body .ic-Login__google {
+    margin-top: $ic-sp;
+  }
+
+  body.ic-Login-Body .ic-Login-footer {
+    margin-top: $ic-sp*0.75;
+  }
+}
+
+@media screen and (max-width: 600px) and (max-height: 700px) {
+  body.ic-Login-Body .ic-Login {
+    padding: 8px 12px;
+  }
+
+  body.ic-Login-Body .ic-Login__content {
+    padding: 16px 14px;
+  }
+
+  body.ic-Login-Body .ic-Login-header .ic-Login-header__logo img {
+    width: 80px;
+  }
+
+  body.ic-Login-Body .ic-Login__body {
+    padding-top: 8px;
+
+    .ic-Input,
+    .Button--login {
+      height: 42px;
+    }
+  }
+
+  body.ic-Login-Body .ic-Form-control--login {
+    margin-bottom: 8px;
+  }
+
+  body.ic-Login-Body .ic-Login__google {
+    margin-top: 8px;
+
+    .ic-Login__google-button {
+      height: 42px;
+    }
+  }
+}
