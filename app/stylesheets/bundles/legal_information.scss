@@ -1,0 +1,59 @@
+@import "base/environment";
+
+.mwenge-legal-policy {
+  max-width: 860px;
+  margin: 40px auto;
+  padding: 40px 48px;
+  color: #172338;
+  background: #fff;
+  border: 1px solid #e4e8ef;
+  border-radius: 8px;
+
+  h1, h2 {
+    color: #262e7d;
+  }
+
+  h1 {
+    margin: 0 0 8px;
+  }
+
+  h2 {
+    margin: 28px 0 8px;
+    font-size: 19px;
+  }
+
+  p {
+    line-height: 1.65;
+  }
+}
+
+.mwenge-legal-policy__header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e4e8ef;
+
+  > p {
+    margin: 8px 0 0;
+    color: #596579;
+  }
+}
+
+.mwenge-legal-policy__eyebrow {
+  color: #8a680e !important;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.mwenge-legal-policy__notice {
+  padding: 12px 16px;
+  color: #493910 !important;
+  background: #fff7dc;
+  border-left: 3px solid #d5a522;
+}
+
+@media (max-width: 600px) {
+  .mwenge-legal-policy {
+    margin: 20px 16px;
+    padding: 24px 20px;
+  }
+}

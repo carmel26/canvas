@@ -134,6 +134,7 @@ const signupDialog = function (id, title, path) {
   })
   $node.dialog({
     resizable: false,
+    dialogClass: 'mwenge-signup-dialog',
     title,
 
     width: Math.min(screen.width, 550),
@@ -187,6 +188,7 @@ const signupDialog = function (id, title, path) {
     zIndex: 1000,
   })
   $node.fixDialogButtons()
+  $node.scrollTop(0)
   // re-disable after fixing
   if (ENV.ACCOUNT.recaptcha_key) {
     $node.parent().find('.button_type_submit').prop('disabled', true)

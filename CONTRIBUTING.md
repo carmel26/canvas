@@ -31,7 +31,7 @@ We’ll try to get back to you in a timely manner and let you know if we need mo
 and any status we can provide on expectation for a fix.
 
 **Feature Requests** should instead be filed on our Canvas community site (https://community.canvaslms.com).
-In order to log in and participate in the community you will need a Canvas account.  If you don’t already have one,
+In order to log in and participate in the community you will Mwecau LMS account.  If you don’t already have one,
 the easiest way to get one is to go to http://www.canvaslms.com/try-canvas, and click “Build It” and register as a teacher for a free account.
 
 **Configuration Issues** are generally best answered either on our user group mailing list or

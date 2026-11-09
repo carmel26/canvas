@@ -26,6 +26,10 @@ class LegalInformationController < ApplicationController
   end
 
   def privacy_policy
-    redirect_to privacy_policy_url
+    if Setting.get("privacy_policy_url", nil).present?
+      redirect_to privacy_policy_url
+    else
+      render
+    end
   end
 end
