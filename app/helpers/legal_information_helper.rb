@@ -24,7 +24,7 @@ module LegalInformationHelper
   end
 
   def privacy_policy_url
-    Setting.get("privacy_policy_url", nil).presence || privacy_policy_redirect_path
+    privacy_policy_redirect_path
   end
 
   protected

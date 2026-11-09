@@ -42,27 +42,22 @@ describe LegalInformationController do
   end
 
   describe "GET 'privacy_policy'" do
-    it "renders the local policy template when no URL is configured" do
+    it "renders the local policy template" do
+      get "privacy_policy"
+
+      expect(response).to render_template("privacy_policy")
+    end
+
+    it "renders the local policy when an external URL is configured" do
       allow(Setting).to receive(:get).and_call_original
-      allow(Setting).to receive(:get).with("privacy_policy_url", nil).and_return(nil)
+      allow(Setting).to receive(:get).with("privacy_policy_url", nil).and_return("https://example.test/privacy")
 
       get "privacy_policy"
 
       expect(response).to render_template("privacy_policy")
     end
 
-    it "redirects to a configured privacy policy URL" do
-      allow(Setting).to receive(:get).and_call_original
-      allow(Setting).to receive(:get).with("privacy_policy_url", nil).and_return("https://example.test/privacy")
-
-      get "privacy_policy"
-
-      expect(response).to redirect_to "https://example.test/privacy"
-    end
-
     it "renders the local policy template when logged in" do
-      allow(Setting).to receive(:get).and_call_original
-      allow(Setting).to receive(:get).with("privacy_policy_url", nil).and_return(nil)
       user_factory
       user_session @user
 
@@ -72,8 +67,6 @@ describe LegalInformationController do
     end
 
     it "does not require acceptance of terms" do
-      allow(Setting).to receive(:get).and_call_original
-      allow(Setting).to receive(:get).with("privacy_policy_url", nil).and_return(nil)
       user_factory
       user_session @user
       session[:require_terms] = true

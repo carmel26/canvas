@@ -55,11 +55,41 @@ const termsHtml = function (arg) {
     {
       wrappers: [
         '<a href="' + htmlEscape(terms_of_use_url) + '" target="_blank">$1</a>',
-        '<a href="' + htmlEscape(privacy_policy_url) + '" target="_blank">$1</a>',
+        '<a href="' +
+          htmlEscape(privacy_policy_url) +
+          '" target="_blank" class="mwenge-privacy-policy-link">$1</a>',
       ],
     },
   )
 }
+
+$('body').on('click', '.mwenge-privacy-policy-link, .privacy_policy_link', function (event) {
+  event.preventDefault()
+  const url = this.href
+  const $policyDialog = $('<div />')
+
+  $policyDialog.load(`${url} .mwenge-legal-policy`, function (_response, status) {
+    if (status !== 'success' || !$policyDialog.children().length) {
+      window.location.assign(url)
+      return
+    }
+
+    $policyDialog.dialog({
+      dialogClass: 'mwenge-privacy-policy-dialog',
+      title: I18n.t('privacy_policy', 'Privacy Policy'),
+      width: Math.min(window.innerWidth - 32, 900),
+      height: 'auto',
+      modal: true,
+      resizable: false,
+      open() {
+        $(this).scrollTop(0)
+      },
+      close() {
+        $(this).dialog('destroy').remove()
+      },
+    })
+  })
+})
 
 const signupDialog = function (id, title, path) {
   let el

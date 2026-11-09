@@ -257,6 +257,83 @@
   }
 }
 
+.mwenge-privacy-policy-dialog.ui-dialog {
+  display: flex;
+  flex-direction: column;
+  left: 0 !important;
+  right: 0 !important;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 32px);
+  margin-right: auto !important;
+  margin-left: auto !important;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 18px 48px rgba(14, 25, 45, 0.28);
+  color: #172338;
+  font-family: inherit;
+
+  .ui-dialog-titlebar {
+    flex: 0 0 auto;
+    padding: 16px 24px;
+    border: 0;
+    border-bottom: 1px solid #e4e8ef;
+    border-radius: 0;
+    background: #fff;
+  }
+
+  .ui-dialog-title {
+    color: #262e7d;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .ui-dialog-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: calc(100vh - 112px);
+    overflow-y: auto;
+    padding: 0;
+    background: #fff;
+    font-family: inherit;
+  }
+
+  .mwenge-legal-policy {
+    max-width: none;
+    margin: 0;
+    padding: 24px 32px;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+
+    h1, h2 {
+      color: #262e7d;
+    }
+
+    h1 {
+      font-size: 26px;
+    }
+
+    h2 {
+      margin: 24px 0 8px;
+      font-size: 18px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .mwenge-privacy-policy-dialog.ui-dialog .mwenge-legal-policy {
+    padding: 20px;
+  }
+}
+
 .terms-of-service__register {
   .terms-of-service__link {
     button: 14px !important;
