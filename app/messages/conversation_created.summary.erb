@@ -8,7 +8,7 @@
   <%= t :subject, "%{user_name}, you just sent a message in Mwecau LMS.", :user_name => content(:user_name) %>
 <% end %>
 
-<%= t :body, "%{user_name}, you just sent a message in Canvas:", :user_name => content(:user_name) %>
+<%= t :body, "%{user_name}, you just sent a message in Mwecau LMS:", :user_name => content(:user_name) %>
 
 <%= CanvasTextHelper.truncate_text(asset.conversation.subject.present? ? <<HEREDOC : asset.body, :max_length => 200)
 Subject: #{asset.conversation.subject}

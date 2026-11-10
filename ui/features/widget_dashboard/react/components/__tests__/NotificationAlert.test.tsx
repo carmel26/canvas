@@ -54,7 +54,7 @@ describe('NotificationAlert', () => {
     render(<NotificationAlert notification={siteAdminNotification} onDismiss={mockOnDismiss} />)
 
     expect(screen.getByText('This is an announcement from')).toBeInTheDocument()
-    expect(screen.getByText('Canvas Administration')).toBeInTheDocument()
+    expect(screen.getByText('Mwecau LMS Administration')).toBeInTheDocument()
   })
 
   it('displays account name when notification is not from site admin', () => {
