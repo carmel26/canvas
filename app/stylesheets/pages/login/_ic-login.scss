@@ -375,20 +375,21 @@ body.ic-Login-Body #footer.ic-Login-footer {
 // Styles specific to the confirmation box, using new UI variables
 ////
 body.body--login-confirmation {
-  background: darken($ic-Login-confirmation-bgd, 3%);
+  background: #eef0f4;
 }
 
 .ic-Login-confirmation {
   box-sizing: border-box;
   border-radius: $baseBorderRadius;
-  box-shadow: 0 1px 4px 1px rgba(black, 0.4);
+  box-shadow: 0 8px 28px rgba(23, 35, 56, 0.12);
   margin: $ic-sp*3 auto 0;
   max-width: 696px;
   form { margin-bottom: 0; } //override default margin on forms
 }
 
 .ic-Login-confirmation__header {
-  background: $ic-Login-confirmation-bgd;
+  background: #fff;
+  border-bottom: 1px solid #e4e8ef;
   border-top-#{direction(left)}-radius: $baseBorderRadius;
   border-top-#{direction(right)}-radius: $baseBorderRadius;
   padding: $ic-sp*1.5;

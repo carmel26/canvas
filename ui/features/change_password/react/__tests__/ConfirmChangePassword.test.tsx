@@ -68,7 +68,7 @@ describe('ConfirmChangePassword', () => {
 
   it('should render the user name in the title', async () => {
     render(<ConfirmChangePassword {...props} />)
-    const title = screen.getByText(`Change login password for ${props.pseudonym.user_name}`)
+    const title = screen.getByText(`Choose a strong password for ${props.pseudonym.user_name}`)
 
     expect(title).toBeInTheDocument()
   })

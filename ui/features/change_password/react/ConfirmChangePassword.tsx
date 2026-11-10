@@ -105,7 +105,9 @@ type FormValues = z.infer<ReturnType<typeof createValidationSchema>>
 export interface ConfirmChangePasswordProps {
   pseudonym: Pseudonym
   defaultPolicy: PasswordPolicyAndPseudonym['policy']
-  passwordPoliciesAndPseudonyms: {[pseudonymId: string]: PasswordPolicyAndPseudonym}
+  passwordPoliciesAndPseudonyms: {
+    [pseudonymId: string]: PasswordPolicyAndPseudonym
+  }
   cc: CC
 }
 
@@ -190,11 +192,18 @@ const ConfirmChangePassword = ({
           <Spinner renderTitle={I18n.t('Loading...')} size="large" margin="0 0 0 medium" />
         </Mask>
       </Overlay>
-      <View as="section" padding="small">
-        <View as="div" margin="0 0 small 0">
-          <Text as="h2" size="x-large">
-            {I18n.t('Change login password for %{userName}', {userName: pseudonym.user_name})}
+      <View as="section" padding="small medium">
+        <View as="div" margin="0 0 medium 0" textAlign="center">
+          <Text as="h2" size="x-large" weight="bold">
+            {I18n.t('Set your new password')}
           </Text>
+          <View as="div" margin="x-small 0 0 0">
+            <Text color="secondary">
+              {I18n.t('Choose a strong password for %{userName}', {
+                userName: pseudonym.user_name,
+              })}
+            </Text>
+          </View>
         </View>
         <form noValidate={true} onSubmit={handleSubmit(handleFormSubmit)}>
           <Flex gap="small" direction="column">
@@ -255,10 +264,18 @@ const ConfirmChangePassword = ({
                 />
               )}
             />
-            <Flex justifyItems="end" margin="x-small 0">
-              <Button color="primary" type="submit" aria-label={buttonText}>
-                {buttonText}
-              </Button>
+            <Flex margin="x-small 0">
+              <Flex.Item shouldGrow={true} shouldShrink={true}>
+                <Button
+                  color="primary"
+                  type="submit"
+                  display="block"
+                  size="large"
+                  aria-label={buttonText}
+                >
+                  {buttonText}
+                </Button>
+              </Flex.Item>
             </Flex>
           </Flex>
         </form>

@@ -25,6 +25,7 @@ class Mailer < ActionMailer::Base
 
   # Amazon SES has a weird interpretation of the RFCs and will reject messages if the from is too long
   MAX_EMAIL_DISPLAY_NAME_BYTE = 320
+  INLINE_LOGO_SRC = "cid:mwecau-logo"
 
   # define in rails3-style
   def create_message(m)
@@ -39,6 +40,14 @@ class Mailer < ActionMailer::Base
 
     reply_to = reply_to_mailbox(m)
     params[:reply_to] = reply_to if reply_to
+
+    if m.html_body&.include?(INLINE_LOGO_SRC)
+      attachments.inline["mwecau-logo.png"] = {
+        mime_type: "image/png",
+        content: Rails.public_path.join("images/mwecau-logo.png").binread,
+        content_id: "<mwecau-logo>"
+      }
+    end
 
     mail(params) do |format|
       [:body, :html_body].each do |attr|

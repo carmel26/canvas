@@ -944,7 +944,7 @@ self.user,
   end
 
   def custom_logo
-    context_root_account && context_root_account.settings[:email_logo]
+    context_root_account&.settings&.dig(:email_logo).presence || "cid:mwecau-logo"
   end
 
   # Internal: Set default values before save.
