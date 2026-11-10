@@ -43,7 +43,7 @@ module Canvas
     end
 
     def unencrypted_secrets
-      return {} unless Rails.env.test?
+      return {} unless Rails.env.test? || Rails.env.development?
 
       ConfigFile.load("credentials.#{Rails.env}", nil)
     end

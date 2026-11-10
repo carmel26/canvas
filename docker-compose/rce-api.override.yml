@@ -8,8 +8,6 @@ services:
 
   canvasrceapi:
     image: instructure/canvas-rce-api
-    ports:
-      - "3000:80"
     environment:
       VIRTUAL_HOST: rce.canvas.docker
       VIRTUAL_PORT: 80
