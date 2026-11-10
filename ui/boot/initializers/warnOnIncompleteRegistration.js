@@ -26,7 +26,8 @@ if (ENV.INCOMPLETE_REGISTRATION) {
     .appendTo($('body'))
     .dialog({
       title: I18n.t('welcome_to_canvas', 'Welcome to Mwecau LMS!'),
-      width: 400,
+      dialogClass: 'mwenge-signup-dialog',
+      width: 440,
       resizable: false,
       buttons: [
         {

@@ -7,7 +7,7 @@
 # * random scripts only used by you
 # * env-specific stuff (e.g. .DS_Store)
 # * pretty much any dotfile not already covered (e.g. .rvmrc)
-#
+# * configuration files for external services (e.g. .env, .yml)
 # That's what .git/info/exclude and core.excludesfile are for :)
 .bundle/
 .env
@@ -112,3 +112,5 @@ coverage-karma
 /.devcontainer/*
 /!.devcontainer/.keep
 .claude/scheduled_tasks.lock
+
+docker-compose/config/outgoing_mail.yml

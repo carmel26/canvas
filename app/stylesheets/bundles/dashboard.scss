@@ -17,6 +17,7 @@
  */
 
 @import "pages/dashboard/dashboard_activity";
+@import "pages/login/registration_dialog";
 
 .ic-dashboard-app {
   margin-top: -($ic-sp * 2);
@@ -47,10 +48,15 @@
     text-transform: uppercase;
   }
 
-  h2 {
-    margin: 0;
+  p.mwenge-dashboard-welcome__subtitle {
+    margin: 0 0 4px;
     color: #fff;
-    font-size: 28px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: none;
+  }
+
+  h2 {
     line-height: 1.2;
   }
 }

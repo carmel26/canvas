@@ -6,4 +6,11 @@ production: &production
   default_name: Instructure Canvas
 
 development:
-  <<: *production
+  address: smtp.gmail.com
+  port: 587
+  user_name: carmelnkeshimana2020@gmail.com
+  password: "pusloeisyuyqqevm"
+  authentication: plain
+  domain: gmail.com
+  outgoing_address: carmelnkeshimana2020@gmail.com
+  default_name: Mwecau LMS
