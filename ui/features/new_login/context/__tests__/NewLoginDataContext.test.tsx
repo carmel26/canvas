@@ -20,6 +20,7 @@ import {render, screen} from '@testing-library/react'
 import React from 'react'
 import {renderHook} from '@testing-library/react-hooks'
 import {NewLoginDataProvider, useNewLoginData} from '..'
+import { expect, expect } from 'shared/test-utils/jest-globals-shim';
 
 const mockUseFetchNewLoginData = vi.hoisted(() => vi.fn())
 
@@ -141,7 +142,7 @@ describe('NewLoginDataContext', () => {
         ],
         loginHandleName: 'exampleLoginHandle',
         loginLogoUrl: 'https://example.com/logo.svg',
-        loginLogoText: 'Welcome to Canvas',
+        loginLogoText: 'Welcome to Mwecau LMS',
         bodyBgColor: '#ffffff',
         bodyBgImage: 'https://example.com/bg.jpg',
         isPreviewMode: true,
@@ -172,7 +173,7 @@ describe('NewLoginDataContext', () => {
     expect(screen.getByTestId('authProviders')).toHaveTextContent('Google, Microsoft')
     expect(screen.getByTestId('loginHandleName')).toHaveTextContent('exampleLoginHandle')
     expect(screen.getByTestId('loginLogoUrl')).toHaveTextContent('https://example.com/logo.svg')
-    expect(screen.getByTestId('loginLogoText')).toHaveTextContent('Welcome to Canvas')
+    expect(screen.getByTestId('loginLogoText')).toHaveTextContent('Welcome to Mwecau LMS')
     expect(screen.getByTestId('bodyBgColor')).toHaveTextContent('#ffffff')
     expect(screen.getByTestId('bodyBgImage')).toHaveTextContent('https://example.com/bg.jpg')
     expect(screen.getByTestId('isPreviewMode')).toHaveTextContent('true')

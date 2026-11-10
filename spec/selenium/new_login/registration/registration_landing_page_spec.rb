@@ -63,6 +63,7 @@ describe "new login Registration Landing page" do
       expect(element_exists?('[data-testid="create-account-link"]')).to be(false)
       expect(element_exists?('[data-testid="create-parent-account-link"]')).to be(true)
       f('[data-testid="create-parent-account-link"]').click
+      wait_for_selector("h1")
       expect(f("h1").text).to include("Create a Parent Account")
     end
   end
@@ -95,7 +96,7 @@ describe "new login Registration Landing page" do
   describe "registration routes access control" do
     it "redirects away from /login/canvas/register when self-registration is disabled" do
       get "/login/canvas/register"
-      expect(f("h1").text).to include("Welcome to Canvas")
+      expect(f("h1").text).to include("Welcome to Mwecau LMS")
     end
   end
 

@@ -73,7 +73,7 @@ describe "new login Student Registration page" do
         get "/login/canvas/register/student"
         f('[data-testid="back-button"]').click
         wait_for_selector("h1")
-        expect(f("h1").text).to include("Welcome to Canvas")
+        expect(f("h1").text).to include("Welcome to Mwecau LMS")
       end
 
       it "goes back to registration landing page if user navigated from login → registration landing page → student registration" do
@@ -92,7 +92,8 @@ describe "new login Student Registration page" do
   describe "access control" do
     it "redirects away from /login/canvas/register/student when self-registration is disabled" do
       get "/login/canvas/register/student"
-      expect(f("h1").text).to include("Welcome to Canvas")
+      wait_for_selector("h1")
+      expect(f("h1").text).to include("Welcome to Mwecau LMS")
     end
   end
 end

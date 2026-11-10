@@ -197,7 +197,7 @@ describe PseudonymsController, type: :request do
         expect(response).to have_http_status :bad_request
       end
 
-      it "returns 400 when trying to set a password on a non-Canvas login" do
+      it "returns 400 when trying to set a password on a non-User login" do
         @account.authentication_providers.create!(auth_type: "cas")
         raw_api_call(:post, @path, @path_options, {
                        user: { id: @student.id },

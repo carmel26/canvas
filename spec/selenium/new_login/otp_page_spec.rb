@@ -109,8 +109,10 @@ describe "new login OTP page" do
     f('[data-testid="username-input"]').send_keys(@pseudonym.unique_id)
     f('[data-testid="password-input"]').send_keys("CfWtyAWtwfQtHeGRTx9BnaU4N")
     f('[data-testid="login-button"]').click
+    wait_for_selector("h1")
     expect(f("h1").text).to include("Multi-Factor Authentication")
     f('[data-testid="cancel-button"]').click
-    expect(f("h1").text).to include("Welcome to Canvas")
+    wait_for_selector("h1")
+    expect(f("h1").text).to include("Welcome to Mwecau LMS")
   end
 end

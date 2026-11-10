@@ -127,9 +127,10 @@ describe "new login Sign In page" do
         )
         get "/login/ldap"
       end
+      wait_for_selector("h1")
 
       it "renders the LDAP sign-in page and posts to /login/ldap" do
-        expect(f("h1").text).to include("Welcome to Canvas")
+        expect(f("h1").text).to include("Welcome to Mwecau LMS")
         expect(f('[data-testid="username-input"]')).to be_displayed
         expect(f('[data-testid="password-input"]')).to be_displayed
         form = f("form")
