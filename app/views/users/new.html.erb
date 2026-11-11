@@ -40,7 +40,7 @@
       <section class="registration-welcome" aria-labelledby="registration-welcome-title">
         <p class="registration-eyebrow"><%= t("Mwenge Catholic University") %></p>
         <h1 id="registration-welcome-title"><%= t("Lux Mundi") %></h1>
-        <p><%= t("Join our learning community and begin your journey at Mwenge Catholic University.") %></p>
+        <p><%= t("Join our learning community and begin your leadership journey at Mwenge Catholic University.") %></p>
         <% if (url = Setting.get('registration_video', nil).presence) %>
           <% js_env({ REGISTRATION_VIDEO_URL: Setting.get('registration_video_url_with_play_params', nil).presence }) %>
           <h2 id="registration_video"><a href="<%= url %>" title="Play the Canvas introduction video"><%= t("Watch a Video") %></a></h2>
@@ -51,11 +51,15 @@
         <p><%= t("Choose the account type that best describes you.") %></p>
         <div class="registration-actions">
           <% if (url = @domain_root_account.settings[:fft_registration_url]) %>
-            <a id="signup_teacher" class="registration-choice registration-choice--teacher" href="<%= url %>" title="Teacher Signup"><%= t("I'm a Teacher") %></a>
+            <a id="signup_teacher" class="registration-choice registration-choice--teacher" href="<%= url %>" title="Facilitator Signup"><%= t("I'm a Facilitator") %></a>
           <% else %>
-            <a href="#" id="signup_teacher" class="signup_link registration-choice registration-choice--teacher" data-template="teacherDialog" title="Teacher Signup"><%= t("I'm a Teacher") %></a>
+            <a href="#" id="signup_teacher" class="signup_link registration-choice registration-choice--teacher" data-template="teacherDialog" title="Facilitator Signup"><%= t("I'm a Facilitator") %></a>
           <% end %>
-          <a href="#" id="signup_student" class="signup_link registration-choice" data-template="studentDialog" title="Student Signup"><%= t("I'm a Student") %></a>
+          <a href="#" id="signup_student" class="signup_link registration-choice" data-template="studentDialog" title="Participant Signup"><%= t("I'm a Participant") %></a>
+          <% google_providers = @domain_root_account.authentication_providers.active.where(auth_type: "google").to_a %>
+          <% google_providers.each do |provider| %>
+            <%= link_to t("Continue with Google"), google_providers.one? ? google_login_path : "/login/google/#{provider.id}", class: "registration-choice registration-choice--google" %>
+          <% end %>
         </div>
         <div class="registration-parent-signup"><%= link_to_parent_signup(nil) %></div>
       </div>

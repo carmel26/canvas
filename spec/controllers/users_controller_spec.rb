@@ -2917,6 +2917,8 @@ describe UsersController do
       end
 
       context "and the feature flag login_registration_ui_identity is disabled" do
+        render_views
+
         before do
           allow(Account.default).to receive(:self_registration_allowed_for?).and_return(true)
         end
@@ -2924,6 +2926,30 @@ describe UsersController do
         it "renders the legacy registration page using the bare layout" do
           get :new
           expect(response).to render_template(layout: "bare")
+        end
+
+        it "does not show a Google sign-in link without an active provider" do
+          Account.default.authentication_providers.create!(auth_type: "google", workflow_state: "deleted")
+
+          get :new
+
+          expect(response.parsed_body.css(".registration-choice--google")).to be_empty
+        end
+
+        it "links to Google sign-in when a provider is active" do
+          Account.default.authentication_providers.create!(auth_type: "google")
+
+          get :new
+
+          expect(response.parsed_body.css(".registration-choice--google").pluck("href")).to eql ["/login/google"]
+        end
+
+        it "links to each Google provider when multiple are active" do
+          providers = Array.new(2) { Account.default.authentication_providers.create!(auth_type: "google") }
+
+          get :new
+
+          expect(response.parsed_body.css(".registration-choice--google").pluck("href")).to eql(providers.map { |provider| "/login/google/#{provider.id}" })
         end
       end
     end

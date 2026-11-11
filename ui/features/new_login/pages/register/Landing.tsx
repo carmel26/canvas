@@ -26,7 +26,7 @@ import React from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useNewLogin, useNewLoginData} from '../../context'
 import {ROUTES} from '../../routes/routes'
-import {Card, MessageAlert, SignInPrompt} from '../../shared'
+import {Card, MessageAlert, SignInPrompt, SSOButtons} from '../../shared'
 
 import iconParent from '../../assets/images/parent.svg'
 import iconStudent from '../../assets/images/student.svg'
@@ -123,6 +123,7 @@ const Landing = () => {
       {customMessageRegistration && <MessageAlert message={customMessageRegistration} />}
 
       {renderCards()}
+      <SSOButtons authType="google" />
     </Flex>
   )
 }

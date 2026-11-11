@@ -49,15 +49,20 @@ const providerIcons: Record<string, string> = {
 
 interface SSOButtonsProps {
   children?: React.ReactNode
+  authType?: string
 }
 
-const SSOButtons = ({children}: SSOButtonsProps) => {
+const SSOButtons = ({children, authType}: SSOButtonsProps) => {
   const {isUiActionPending} = useNewLogin()
   const {isPreviewMode, authProviders} = useNewLoginData()
 
   const isDisabled = isPreviewMode || isUiActionPending
 
-  if (!authProviders || authProviders.length === 0) {
+  const displayedProviders = authProviders?.filter(
+    provider => !authType || provider.auth_type === authType,
+  )
+
+  if (!authProviders || !displayedProviders?.length) {
     return null
   }
 
@@ -106,7 +111,7 @@ const SSOButtons = ({children}: SSOButtonsProps) => {
 
   return (
     <Flex alignItems="stretch" direction="column" gap="small" justifyItems="center" wrap="no-wrap">
-      {authProviders.map(renderProviderButton)}
+      {displayedProviders.map(renderProviderButton)}
       {children}
     </Flex>
   )

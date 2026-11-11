@@ -79,6 +79,53 @@ describe('Landing', () => {
     expect(screen.getByText('Parent')).toBeInTheDocument()
   })
 
+  it('does not render a Google sign-in link without a Google provider', () => {
+    renderLanding()
+    expect(screen.queryByRole('link', {name: 'Log in with Google'})).not.toBeInTheDocument()
+  })
+
+  it('links to Google sign-in when one Google provider is configured', () => {
+    const data = {
+      isDataLoading: false,
+      authProviders: [{id: 1, auth_type: 'google', display_name: 'Google'}],
+    }
+    mockUseNewLoginData
+      .mockReturnValueOnce(data)
+      .mockReturnValueOnce(data)
+      .mockReturnValueOnce(data)
+
+    renderLanding()
+
+    expect(screen.getByRole('link', {name: 'Log in with Google'})).toHaveAttribute(
+      'href',
+      '/login/google',
+    )
+  })
+
+  it('renders links to configured Google providers without showing other providers', () => {
+    const data = {
+      isDataLoading: false,
+      authProviders: [
+        {id: 1, auth_type: 'google', display_name: 'Google'},
+        {id: 2, auth_type: 'google', display_name: 'Google'},
+        {id: 3, auth_type: 'microsoft', display_name: 'Microsoft'},
+      ],
+    }
+    mockUseNewLoginData
+      .mockReturnValueOnce(data)
+      .mockReturnValueOnce(data)
+      .mockReturnValueOnce(data)
+
+    renderLanding()
+
+    expect(
+      screen
+        .getAllByRole('link', {name: 'Log in with Google'})
+        .map(link => link.getAttribute('href')),
+    ).toEqual(['/login/google/1', '/login/google/2'])
+    expect(screen.queryByRole('link', {name: 'Log in with Microsoft'})).not.toBeInTheDocument()
+  })
+
   it('renders links with correct hrefs', () => {
     renderLanding()
     expect(screen.getByLabelText('Create Teacher Account')).toHaveAttribute(
