@@ -188,6 +188,15 @@ describe "users" do
       Account.default.canvas_authentication_provider.update_attribute(:self_registration, true)
     end
 
+    it "navigates to the login page instead of opening a sign-in form" do
+      get "/register"
+
+      expect(f("#registration_login")["href"]).to include("/login")
+      expect(element_exists?("#login_form")).to be(false)
+      expect_new_page_load { f("#registration_login").click }
+      expect(driver.current_url).to include("/login")
+    end
+
     it "does not require terms if globally not configured to do so" do
       Setting.set("terms_required", "false")
 

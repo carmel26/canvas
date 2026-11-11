@@ -19,15 +19,11 @@
 import $ from 'jquery'
 import preventDefault from '@canvas/util/preventDefault'
 import {loadSignupDialog} from '@canvas/signup-dialog'
-import loginForm from '../jst/login.handlebars'
-import authenticity_token from '@canvas/authenticity-token'
 import htmlEscape from '@instructure/html-escape'
 import {useScope as createI18nScope} from '@canvas/i18n'
 import extensions from '@canvas/bundles/extensions'
 
 const I18n = createI18nScope('registration')
-
-let $loginForm = null
 
 $('.signup_link').click(
   preventDefault(function () {
@@ -63,12 +59,6 @@ $('#registration_video a').click(
   }),
 )
 
-$('body').click(function (e) {
-  if (!$(e.target).closest('#registration_login, #login_form').length) {
-    return $loginForm != null ? $loginForm.hide() : void 0
-  }
-})
-
 const loadExtension = extensions['ui/features/registration/jquery/index.js']?.()
 if (loadExtension) {
   loadExtension
@@ -82,23 +72,3 @@ if (loadExtension) {
       )
     })
 }
-
-export default $('#registration_login').on(
-  'click',
-  preventDefault(function () {
-    if ($loginForm) {
-      $loginForm.toggle()
-    } else {
-      $loginForm = $(
-        loginForm({
-          login_handle_name: ENV.ACCOUNT.registration_settings.login_handle_name,
-          auth_token: authenticity_token(),
-        }),
-      )
-      $loginForm.appendTo($(this).closest('.registration-content'))
-    }
-    if ($loginForm.is(':visible')) {
-      return $loginForm.find('input:visible').eq(0).focus()
-    }
-  }),
-)
