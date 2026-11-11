@@ -194,7 +194,7 @@ describe Login::OAuth2Controller do
       jwt = Canvas::Security.create_jwt(aac_id: aac.global_id, nonce: "bob")
       get :create, params: { code: "abc", state: jwt }
       expect(response).to redirect_to(login_url)
-      expect(flash[:delegated_message]).to include("doesn't have an account")
+      expect(flash[:delegated_message]).to eql("Mwecau Leadership Short Courses doesn't have an account for user: user")
     end
 
     it "redirects to login if no user found" do
@@ -207,7 +207,7 @@ describe Login::OAuth2Controller do
 
       get :create, params: { code: "abc", state: jwt }
       expect(response).to redirect_to(login_url)
-      expect(flash[:delegated_message]).to include("doesn't have an account")
+      expect(flash[:delegated_message]).to eql("Mwecau Leadership Short Courses doesn't have an account for user: user")
     end
 
     it "redirects to login if no user information returned" do
@@ -243,6 +243,28 @@ describe Login::OAuth2Controller do
       expect(response).to redirect_to(dashboard_url(login_success: 1))
       p = Account.default.pseudonyms.active.by_unique_id("user").first!
       expect(p.authentication_provider).to eq aac
+    end
+
+    context "with Google authentication" do
+      let(:aac) do
+        root_account.authentication_providers.create!(auth_type: "google", login_attribute: "email", jit_provisioning: true)
+      end
+
+      it "creates an unprivileged account without enrolling the user in a course" do
+        expect_any_instantiation_of(aac).to receive(:get_token).and_return(token)
+        expect_any_instantiation_of(aac).to receive(:unique_id).with(token).and_return("participant@example.com")
+        expect_any_instantiation_of(aac).to receive(:provider_attributes).with(token).and_return({})
+        session[:oauth2_nonce] = ["bob"]
+        jwt = Canvas::Security.create_jwt(aac_id: aac.global_id, nonce: "bob")
+
+        get :create, params: { code: "abc", state: jwt }
+
+        expect(response).to redirect_to(dashboard_url(login_success: 1))
+        pseudonym = root_account.pseudonyms.active.by_unique_id("participant@example.com").first!
+        expect(pseudonym.authentication_provider).to eql aac
+        expect(pseudonym.user.account_users.active).to be_empty
+        expect(pseudonym.user.enrollments).to be_empty
+      end
     end
 
     it "redirects to login any time an expired token is noticed" do

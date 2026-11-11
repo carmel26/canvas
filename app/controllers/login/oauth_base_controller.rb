@@ -105,7 +105,7 @@ class Login::OAuthBaseController < ApplicationController
       successful_login(user, pseudonym, otp_passed: @aac.try(:mfa_passed?, token))
     else
       logger.warn "Received OAuth2 login for unknown user: #{unique_ids.inspect}"
-      redirect_to_unknown_user_url(t("Canvas doesn't have an account for user: %{user}", user: unique_id))
+      redirect_to_unknown_user_url(t("Mwecau Leadership Short Courses doesn't have an account for user: %{user}", user: unique_id))
       increment_statsd(:failure, reason: :unknown_user)
     end
   end
