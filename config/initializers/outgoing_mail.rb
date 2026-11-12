@@ -20,10 +20,14 @@
 # Initialize outgoing email configuration. See config/outgoing_mail.yml.example.
 
 # This doesn't get required if we're not using smtp, and there's some
-# references to SMTP exception classes in the code.
+# references to SMTP exception classes in the code. 
 
 config = {
-  domain: "unknowndomain.example.com",
+  address: "smtp.gmail.com",
+  port: 587,
+  domain: "gmail.com",
+  outgoing_address: "trainings@mwecau.ac.tz",
+  default_name: "Mwecau LeaderShip Short Courses",
   delivery_method: :smtp,
 }
 

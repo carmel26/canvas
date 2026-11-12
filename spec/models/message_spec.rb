@@ -68,6 +68,8 @@ describe Message do
       msg = generate_message(:account_user_notification, :email, @au)
       expect(msg.html_body.scan('<html dir="ltr" lang="en">').length).to eq 1
       expect(msg.html_body.index("<!DOCTYPE")).to eq 0
+      expect(msg.html_body).to include("Sent by Mwecau LMS")
+      expect(msg.html_body).to include("Update your notification settings")
     end
 
     it "uses slack template if present" do
